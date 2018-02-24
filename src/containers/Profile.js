@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 
 class Profile extends Component {
   render() {
+    const { userName } = this.props.match.params
+
     return (
       <div>
-        Profile
+        <h1>Profile: {userName}</h1>
       </div>
     );
   }
