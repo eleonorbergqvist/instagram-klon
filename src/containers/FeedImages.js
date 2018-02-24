@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class FeedImagesView extends Component {
+class FeedImages extends Component {
   render() {
     return (
       <div>
+        FeedImages
       </div>
     );
   }
 }
 
-export default FeedImagesView;
+export default FeedImages;

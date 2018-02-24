@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class RegisterView extends Component {
+class Profile extends Component {
   render() {
     return (
       <div>
+        Profile
       </div>
     );
   }
 }
 
-export default RegisterView;
+export default Profile;

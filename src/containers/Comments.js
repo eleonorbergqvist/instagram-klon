@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 
-class CommentsView extends Component {
+class Comments extends Component {
   render() {
     return (
       <div>
+        Comments
       </div>
     );
   }
 }
 
-export default CommentsView;
+export default Comments;

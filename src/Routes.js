@@ -1,12 +1,23 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import Comments from './containers/Comments';
+import FeedImages from './containers/FeedImages';
+import Login from './containers/Login';
+import Profile from './containers/Profile';
+import Register from './containers/Register';
+import ImageDetail from './containers/ImageDetail';
 
 
 const Routes = (props) => {
   return(
     <div>
-      <Route path='/bobby' component={Bobby} />
-      <Route path='/dum' component={Bobby} />
+      <Route path='/images/{imgId}/comments' component={Comments} />
+      <Route exact path='/images/{imgId}/' component={ImageDetail} />
+      <Route path='/feeds/{userName}/' component={FeedImages} />
+      <Route path='/users/{userName}' component={Profile} />
+      <Route exact path='/' component={Bobby} />
+      <Route path='/login/' component={Login} />
+      <Route path='/register/' component={Register} />
     </div>
   );
 };
