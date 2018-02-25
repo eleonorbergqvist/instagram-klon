@@ -1,0 +1,19 @@
+{
+  "data": {
+    "image": {
+      "id": 1,
+      "image": "https://loremflickr.com/1080/1080/bob",
+      "description": "A image of bob",
+      "user": {
+        "avatar": "http://via.placeholder.com/30x30",
+        "userName": "Bobbilicous1"
+      }
+    },
+    "comments": [
+      {"text": "BOBBY ÄR BÄST", "userName": "Arne", "avatar": "http://via.placeholder.com/30x30"},
+      {"text": "SLUTA SKRIKA", "userName": "Lisa", "avatar": "http://via.placeholder.com/30x30"},
+      {"text": "KRÅKAN ÄR EN MÅS", "userName": "Sara", "avatar": "http://via.placeholder.com/30x30"},
+      {"text": "Måsen känner en grön gås", "userName": "Kalle", "avatar": "http://via.placeholder.com/30x30"}
+    ]
+  }
+}

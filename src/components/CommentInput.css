@@ -1,0 +1,18 @@
+.CommentInput {
+    padding: 10px;
+}
+
+.CommentInput__Avatar {
+    border-radius: 50%;
+    float: left;
+    margin-right: 10px;
+}
+
+.CommentInput__Field {
+    line-height: 20px;
+
+}
+
+.CommentInput__Submit {
+
+}

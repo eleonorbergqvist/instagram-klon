@@ -40,8 +40,8 @@ class Toolbar extends Component {
           <button className="Toolbar__LikeBtn"><i className="far fa-heart"></i></button>
         </div>
         {this.props.likes > 0 && 
-        <p className="Toolbar__Likes">{this.props.likes} gilla-markeringar</p>
-      }
+          <p className="Toolbar__Likes">{this.props.likes} gilla-markeringar</p>
+        }
       </div>
     );
   }

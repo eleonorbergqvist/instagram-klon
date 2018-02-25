@@ -3,22 +3,7 @@
 
 .FeedImage__Image {
     max-width: 100%;
-}
-
-.ViewComments__Wrapper {
-    background-color: pink;
-    display: flex;
-    padding: 10px;
-}
-
-.ViewComments__UserName {
-    font-weight: bold;
-
-}
-
-.ViewComments__UserComment {
-    font-weight: normal;
-    margin-left: 10px;
+    margin-bottom: 10px;
 }
 
 .FeedImage__Description {
