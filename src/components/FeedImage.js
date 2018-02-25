@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+import UserHeader from './UserHeader';
+import './FeedImage.css';
 
 class FeedImage extends Component {
   render() {
     return (
-      <div>
-
-        <img src={this.props.image} alt="text"/>
+      <article className="FeedImage">
+        <UserHeader {...this.props.user} />
+        <img className="FeedImage__Image" src={this.props.image} alt="text"/>
         <p>{this.props.description}</p>
-        <Like />
+        <Toolbar />
         <ViewComments />
-      </div>
+      </article>
     );
   }
 }
@@ -17,15 +19,19 @@ class FeedImage extends Component {
 FeedImage.defaultProps = {
   description: 'Stranger',
   image: 'http://via.placeholder.com/1080x1080',
+  user1: {
+    avatar: 'http://via.placeholder.com/30x30',
+    userName: 'Bobbilicous1'
+  }
 };
 
-class Like extends Component {
+class Toolbar extends Component {
   render () {
     return (
-        <div>
-          <button><i className="far fa-heart"></i></button>
-        </div>
-      );
+      <div>
+        <button><i className="far fa-heart"></i></button>
+      </div>
+    );
   }
 }
 

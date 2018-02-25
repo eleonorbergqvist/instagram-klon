@@ -1,0 +1,12 @@
+.Header {
+  background-color: #F8F8F8;
+  color: white;
+  padding: 10px;
+}
+
+.Header__Title {
+  font-size: 1.5em;
+  color: #202020;
+  font-family: "billabong";
+  margin: 0;
+}

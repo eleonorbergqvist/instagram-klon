@@ -5,12 +5,16 @@
       "image": "https://loremflickr.com/1080/1080/bob",
       "description": "A image of bob",
       "user": {
+        "avatar": "http://via.placeholder.com/30x30",
+        "userName": "Bobbilicous1"
       }
     }, {
       "id": 2,
       "image": "https://loremflickr.com/1080/1080/sea",
       "description": "Bob by the sea",
       "user": {
+        "avatar": "http://via.placeholder.com/30x30",
+        "userName": "Bobbilicous1"
       }
     }
     , {
@@ -18,6 +22,8 @@
       "image": "https://loremflickr.com/1080/1080/snow",
       "description": "Snow is nice",
       "user": {
+        "avatar": "http://via.placeholder.com/30x30",
+        "userName": "Bobbilicous1"
       }
     }
   ]

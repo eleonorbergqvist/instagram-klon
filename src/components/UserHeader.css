@@ -1,0 +1,20 @@
+.UserHeader {
+  background-color: #00FF00;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.UserHeader__Avatar {
+  margin-right: 10px;
+  
+}
+
+.UserHeader__AvatarImage {
+  border-radius: 50%;
+}
+
+.UserHeader__Name {
+  line-height: 30px;
+}
