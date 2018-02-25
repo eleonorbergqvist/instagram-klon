@@ -1,20 +1,24 @@
 import React, { Component } from 'react';
 import UserHeader from './UserHeader';
 import './FeedImage.css';
+import { Link } from "react-router-dom";
 
 class FeedImage extends Component {
   render() {
+    const { id, user, likes, image, description, commentCount } = this.props;
+
     return (
       <article className="FeedImage">
-        <UserHeader {...this.props.user} />
-        <img className="FeedImage__Image" src={this.props.image} alt="text"/>
-        <Toolbar likes={this.props.likes} />
+        <UserHeader {...user} />
+        <img className="FeedImage__Image" src={image} alt="text"/>
+        <Toolbar likes={likes} />
         <p className="FeedImage__Description">
-          <strong class="FeedImage__DescriptionUserName">{this.props.user1.userName}</strong>
-          {this.props.description}
+          <strong class="FeedImage__DescriptionUserName">{user.userName}</strong>
+          {description}
         </p>
-        {this.props.commentCount > 0 && 
-          <a className="FeedImage__ShowComments" href="#">Visa kommentarer</a>
+        
+        {commentCount > 0 && 
+          <Link className="FeedImage__ShowComments" to={`/images/${id}/comments`}>Visa kommentarer</Link>
         }
       </article>
     );
