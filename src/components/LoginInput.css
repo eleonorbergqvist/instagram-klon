@@ -1,0 +1,32 @@
+.LoginInput {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.LoginInput__Field {
+    display: block;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+
+}
+
+.LoginInput__Submit {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    border: none;
+    line-height: 30px;
+    background-color: lightblue;
+    color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+}
+
+::placeholder {
+    color: lightgrey;
+}

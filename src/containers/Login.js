@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
+import LoginHeader from "../components/LoginHeader";
+import LoginInput from "../components/LoginInput";
+
 
 class Login extends Component {
   render() {
     return (
       <div>
-        Login
+        <LoginHeader />
+        <LoginInput />
       </div>
     );
   }
+}
+
+class LoginHandler extends Component {
+    
 }
 
 export default Login;

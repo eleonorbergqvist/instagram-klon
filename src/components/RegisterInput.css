@@ -1,0 +1,30 @@
+.RegisterInput {
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.RegisterInput__Field {
+    display: block;
+    width: 100%;
+    line-height: 30px;
+    margin-bottom: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.RegisterInput__Submit {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+    border: none;
+    line-height: 30px;
+    background-color: purple;
+    color: white;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+
+}
+
+.RegisterInput__Field::placeholder {
+    color: lightgrey;
+}
