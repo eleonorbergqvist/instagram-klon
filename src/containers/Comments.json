@@ -10,10 +10,30 @@
       }
     },
     "comments": [
-      {"text": "BOBBY ÄR BÄST", "userName": "Arne", "avatar": "http://via.placeholder.com/30x30"},
-      {"text": "SLUTA SKRIKA", "userName": "Lisa", "avatar": "http://via.placeholder.com/30x30"},
-      {"text": "KRÅKAN ÄR EN MÅS", "userName": "Sara", "avatar": "http://via.placeholder.com/30x30"},
-      {"text": "Måsen känner en grön gås", "userName": "Kalle", "avatar": "http://via.placeholder.com/30x30"}
+      {
+        "id": 1, 
+        "text": "BOBBY ÄR BÄST", 
+        "userName": "Arne", 
+        "avatar": "http://via.placeholder.com/30x30"
+      },
+      {
+        "id": 2, 
+        "text": "SLUTA SKRIKA", 
+        "userName": "Lisa", 
+        "avatar": "http://via.placeholder.com/30x30"
+      },
+      {
+        "id": 3, 
+        "text": "KRÅKAN ÄR EN MÅS", 
+        "userName": "Sara", 
+        "avatar": "http://via.placeholder.com/30x30"
+      },
+      {
+        "id": 4, 
+        "text": "Måsen känner en grön gås", 
+        "userName": "Kalle", 
+        "avatar": "http://via.placeholder.com/30x30"
+      }
     ]
   }
 }

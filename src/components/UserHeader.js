@@ -4,8 +4,6 @@ import './UserHeader.css';
 
 class UserHeader extends Component {
   render () {
-    console.log(this.props);
-    
     return (
       <header className="UserHeader">
         <div className="UserHeader__Avatar">

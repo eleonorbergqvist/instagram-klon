@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import data from "./FeedImages.json";
+import Header from '../components/Header';
 import FeedImage from '../components/FeedImage';
 
 class FeedImages extends Component {
@@ -23,6 +24,7 @@ class FeedImages extends Component {
 
     return (
       <div>
+        <Header history={this.props.history} />
         <h1>FeedImages: {userName}</h1>
         {images.map((image) => <FeedImage key={image.id} {...image} />)}
       </div>

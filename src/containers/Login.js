@@ -14,8 +14,4 @@ class Login extends Component {
   }
 }
 
-class LoginHandler extends Component {
-    
-}
-
 export default Login;

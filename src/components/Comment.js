@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './Comment.css';
 
 const Comment = ({avatar, userName, text}) => {
   return (
     <p className="Comment">
-        <img className="Comment__Avatar" src={avatar} />
+        <img className="Comment__Avatar" alt={userName} src={avatar} />
         <strong className="Comment__UserName">{userName}</strong> 
         {text} 
         <button className="Comment__LikeBtn">

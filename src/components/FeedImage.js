@@ -13,7 +13,7 @@ class FeedImage extends Component {
         <img className="FeedImage__Image" src={image} alt="text"/>
         <Toolbar likes={likes} />
         <p className="FeedImage__Description">
-          <strong class="FeedImage__DescriptionUserName">{user.userName}</strong>
+          <strong className="FeedImage__DescriptionUserName">{user.userName}</strong>
           {description}
         </p>
         
