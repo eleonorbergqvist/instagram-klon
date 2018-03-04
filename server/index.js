@@ -71,7 +71,12 @@ app.get('/api/v1/comments', (req, res) => {
         populate(['user', 'image']).
         exec((err, comments) => {
             if (err) return handleError(err, res);
-            return res.json({ data: comments });
+            return res.json({
+                data: {
+                    image: undefined,
+                    comments: comments,
+                }
+            });
         });
 });
 
