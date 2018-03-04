@@ -6,6 +6,7 @@ const bcrypt = require('bcryptjs');
 const bodyParser = require('body-parser');
 const config = require('./config');
 const { User, Image, Comment } = require('./models');
+const verifyToken = require('./verifyToken');
 
 mongoose.connect('mongodb://localhost/instagram_klon');
 
@@ -34,6 +35,7 @@ const handleError = (err) => {
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
+// Factory helpers
 app.get('/actions/create/user', (req, res) => {
   User.create(req.query, (err, user) => {
     if (err) return handleError(err, res);
@@ -55,15 +57,15 @@ app.get('/actions/create/comment', (req, res) => {
   })
 });
 
-app.get('/api/v1/users', (req, res) => {
+// Data endpoints
+app.get('/api/v1/users', verifyToken, (req, res) => {
   User.find({}, (err, users) => {
     if (err) return handleError(err, res);
     return res.json({ data: users });
   });
 });
 
-
-app.get('/api/v1/images', (req, res) => {
+app.get('/api/v1/images', verifyToken, (req, res) => {
   Image.
     find(req.query).
     populate(['user', 'comment']).
@@ -73,7 +75,7 @@ app.get('/api/v1/images', (req, res) => {
     });
 });
 
-app.get('/api/v1/comments', (req, res) => {
+app.get('/api/v1/comments', verifyToken, (req, res) => {
   Comment.
     find({}).
     populate(['user', 'image']).
@@ -112,19 +114,19 @@ app.post('/api/v1/register', (req, res) => {
 });
 
 app.post('/api/v1/login', (req, res) => {
-  if (!req.body.password) return res.status(400).send("Missing password.");
-  if (!req.body.email) return res.status(400).send("Missing email.");
+  if (!req.body.password) return res.status(400).send({ message: "Missing password." });
+  if (!req.body.email) return res.status(400).send({ message: "Missing email." });
 
   User.
     findOne({ email: req.body.email }, (err, user) => {
       if (err) throw err;
-      if (!user) return res.status(400).send("Invalid username and/or password.");
+      if (!user) return res.status(401).send({ message: "Invalid username and/or password." });
 
       const isValid = bcrypt.compareSync(req.body.password, user.password);
-      if (!isValid) return res.status(400).send("Invalid username and/or password.");
+      if (!isValid) return res.status(401).send({ message: "Invalid username and/or password."});
 
       var token = jwt.sign({ id: user._id }, config.SECRET, {
-        expiresIn: 86400 // 24 hours
+        expiresIn: 86400,  // 24 hours
       });
       return res.status(200).send({ token: token });
     });
