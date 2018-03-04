@@ -12,6 +12,7 @@ const userSchema = new Schema({
 
 const imageSchema = new Schema({
     user: {type: Schema.Types.ObjectId, ref: 'User'},
+    userName: String,
     description: String,
     // TODO: Add created field
     source: String
@@ -20,7 +21,8 @@ const imageSchema = new Schema({
 const commentSchema = new Schema({
     image: {type: Schema.Types.ObjectId, ref: 'Image'},
     user: {type: Schema.Types.ObjectId, ref: 'User'},
-    description: String,
+    userName: String,
+    text: String,
 });
 
 const User = mongoose.model('User', userSchema);
