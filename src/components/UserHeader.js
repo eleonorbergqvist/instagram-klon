@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './UserHeader.css';
+import { Link } from 'react-router-dom';
 
 
 class UserHeader extends Component {
@@ -7,9 +8,9 @@ class UserHeader extends Component {
     return (
       <header className="UserHeader">
         <div className="UserHeader__Avatar">
-          <img className="UserHeader__AvatarImage" src={this.props.avatar} alt={this.props.userName} />
+          <img className="UserHeader__AvatarImage" src={"http://localhost:8080/public/" + this.props.avatar} alt={this.props.userName} />
         </div>
-        <p className="UserHeader__Name">{this.props.userName}</p>
+        <Link className="UserHeader__Name" to={'/users/'+this.props.userName}>{this.props.userName}</Link>
       </header>
     )
   }

@@ -7,11 +7,14 @@
 
 .UserHeader__Avatar {
   margin-right: 10px;
+
   
 }
 
 .UserHeader__AvatarImage {
   border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
 
 .UserHeader__Name {
