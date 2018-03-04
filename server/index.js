@@ -52,13 +52,16 @@ app.get('/api/v1/users', (req, res) => {
     });
 });
 
+
 app.get('/api/v1/images', (req, res) => {
     Image.
-        find({}).
-        populate('user').
+        find(req.query).
+        populate(['user', 'comment']).
         exec((err, images) => {
             if (err) return handleError(err, res);
-            return res.json({ data: images });
+            return res.json({ data: images
+
+             });
         });
 });
 
