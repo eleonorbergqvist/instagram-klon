@@ -13,7 +13,7 @@ const Routes = (props) => {
     <div>
       <Route path='/images/:imgId/comments' component={Comments} />
       <Route exact path='/images/:imgId/' component={ImageDetail} />
-      <Route path='/feeds/:userName' component={FeedImages} />
+      <Route path='/feeds/' component={FeedImages} />
       <Route path='/users/:userName' component={Profile} />
       <Route exact path='/' component={Bobby} />
       <Route path='/login/' component={Login} />
