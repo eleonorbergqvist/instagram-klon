@@ -9,8 +9,10 @@ class Login extends Component {
     redirectToReferrer: false,
   };
 
-  handleLoginSuccess = token => {
-    window.localStorage.setItem("token", token);
+  handleLoginSuccess = (params) => {
+    window.localStorage.setItem("token", params.token);
+    window.localStorage.setItem("currentUserName", params.user.userName); 
+    window.localStorage.setItem("currentUserAvatar", params.user.avatar);
 
     this.setState({ redirectToReferrer: true });
   }

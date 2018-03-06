@@ -149,7 +149,13 @@ app.post('/api/v1/login', (req, res) => {
       var token = jwt.sign({ id: user._id }, config.SECRET, {
         expiresIn: 86400,  // 24 hours
       });
-      return res.status(200).send({ token: token });
+      return res.status(200).send({ 
+        token: token,
+        user: {
+          userName: user.userName,
+          avatar: user.avatar,
+        }
+      });
     });
 });
 

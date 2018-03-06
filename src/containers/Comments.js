@@ -11,7 +11,8 @@ class Comments extends Component {
 
     this.state = {
       image: null,
-      comments: []
+      comments: [],
+      currentUser: null,
     }
   }
 
@@ -42,11 +43,16 @@ class Comments extends Component {
           image: json.data,
         });
       })
+
+    const currentUser = window.localStorage.getItem("currentUser");
+    this.setState({
+      currentUser,
+    });
   }
 
   render() {
     const { userName } = this.props.match.params;
-    const { image, comments } = this.state;
+    const { image, comments, currentUser } = this.state;
 
     return (
       <div className="Comments">
@@ -58,8 +64,8 @@ class Comments extends Component {
         <hr className="Comments__Separator" />
         {comments.map((comment) => <Comment key={comment._id} {...comment} />)}
         <hr className="Comments__Separator" />
-        {image && 
-          <CommentInput user={image.user} />
+        {image && currentUser && 
+          <CommentInput image={image._id} user={currentUser} />
         }
       </div>
     );
