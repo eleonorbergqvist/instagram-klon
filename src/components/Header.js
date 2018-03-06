@@ -11,7 +11,7 @@ class Header extends Component {
     return (
       <header className="Header">
         {this.props.showBack && 
-          <button className="Header_BackBtn" onClick={ this.handleBackClick }>Back</button>
+          <button className="Header_BackBtn" onClick={this.handleBackClick}>Back</button>
         }
         <h1 className="Header__Title">Instagram Klon</h1>
       </header>

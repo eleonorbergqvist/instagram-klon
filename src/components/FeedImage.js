@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 class FeedImage extends Component {
   render() {
-    const { id, user, likes, source, description, commentCount } = this.props;
+    const { _id, user, likes, source, description, commentCount } = this.props;
 
     return (
       <article className="FeedImage">
@@ -18,7 +18,7 @@ class FeedImage extends Component {
         </p>
         
         {commentCount > 0 && 
-          <Link className="FeedImage__ShowComments" to={`/images/${id}/comments`}>Visa kommentarer</Link>
+          <Link className="FeedImage__ShowComments" to={`/images/${_id}/comments`}>Visa kommentarer</Link>
         }
       </article>
     );

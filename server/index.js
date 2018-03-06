@@ -28,7 +28,7 @@ app.use(bodyParser.urlencoded({
 // Serve static images
 app.use('/public', express.static('public'));
 
-const handleError = (err) => {
+const handleError = (err, res) => {
   console.log(err);
   return res.send('ERROR! Someting has happened!')
 }
@@ -71,22 +71,43 @@ app.get('/api/v1/images', verifyToken, (req, res) => {
     populate(['user', 'comment']).
     exec((err, images) => {
       if (err) return handleError(err, res);
+
+      let promises = [];
+      for (var i=0; i<images.length; i++) {
+        let promise = Comment.count({ image: images[i]._id });
+        promises.push(promise);
+      }
+
+      Promise.all(promises).then((commentCounts) => {
+        images = images.map((image, index) => {
+          image = image.toObject();
+          image.commentCount = commentCounts[index];
+          return image;
+        });
+
+        return res.json({ data: images });
+      });
+    });
+});
+
+app.get('/api/v1/images/:id', verifyToken, (req, res) => {
+  Image.
+    findOne({ _id: req.params.id }).
+    populate(['user', 'comment']).
+    exec((err, images) => {
+      if (err) return handleError(err, res);
+
       return res.json({ data: images });
     });
 });
 
 app.get('/api/v1/comments', verifyToken, (req, res) => {
   Comment.
-    find({}).
+    find(req.query).
     populate(['user', 'image']).
     exec((err, comments) => {
       if (err) return handleError(err, res);
-      return res.json({
-        data: {
-          image: undefined,
-          comments: comments,
-        }
-      });
+      return res.json({ data: comments });
     });
 });
 

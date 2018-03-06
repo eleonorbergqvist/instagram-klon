@@ -22,12 +22,23 @@ class Profile extends Component {
           'x-access-token': token
         },
       })
+      .then((response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          return Promise.reject(response);
+        }
+      })
       .then(response => response.json())
       .then(json => {
+        console.log(json);
         this.setState({
           images: json.data
         });
       })
+      .catch(error => {
+        alert(error.statusText);
+      });
   }
 
   render() {
@@ -36,7 +47,7 @@ class Profile extends Component {
 
     return (
       <div>
-        <Header history={this.props.history} />
+        <Header showBack history={this.props.history} />
         <h1>Profile: {userName}</h1>
         {images.map((image) => <FeedImage key={image._id} {...image} />)}
       </div>

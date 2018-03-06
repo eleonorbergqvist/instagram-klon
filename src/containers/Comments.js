@@ -16,12 +16,30 @@ class Comments extends Component {
   }
 
   componentWillMount() {
-    fetch('http://localhost:8080/api/v1/comments')
+    const {imgId} = this.props.match.params;
+    const token = window.localStorage.getItem("token");
+
+    fetch('http://localhost:8080/api/v1/comments?image='+imgId, {
+        method: 'GET',
+        headers: {
+          'x-access-token': token
+        }})
       .then(response => response.json())
       .then(json => {
         this.setState({
-          image: json.data.image,
-          comments: json.data.comments,
+          comments: json.data,
+        });
+      })
+
+    fetch('http://localhost:8080/api/v1/images/'+imgId, {
+        method: 'GET',
+        headers: {
+          'x-access-token': token
+        }})
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          image: json.data,
         });
       })
   }
@@ -33,10 +51,9 @@ class Comments extends Component {
     return (
       <div className="Comments">
         <Header showBack history={this.props.history} />
-        <h1>------------------</h1>
-        <h1>Comments: {userName}</h1>
+
         {image && 
-          <Comment avatar={image.user.avatar} userName={image.user.userName} text={image.user.userName} />
+          <Comment user={image.user} text={image.description} />
         }
         <hr className="Comments__Separator" />
         {comments.map((comment) => <Comment key={comment._id} {...comment} />)}
