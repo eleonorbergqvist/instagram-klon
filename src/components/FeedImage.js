@@ -11,7 +11,7 @@ class FeedImage extends Component {
       <article className="FeedImage">
         <UserHeader {...user} />
         <img className="FeedImage__Image" src={ "http://localhost:8080/public/" + source } alt="text"/>
-        <Toolbar likes={likes} />
+        <Toolbar likes={likes} imageId={_id} />
         <p className="FeedImage__Description">
           <strong className="FeedImage__DescriptionUserName">{user.userName}</strong>
           {description}
@@ -25,26 +25,42 @@ class FeedImage extends Component {
   }
 }
 
-// FeedImage.defaultProps = {
-//   description: 'Stranger',
-//   image: 'http://via.placeholder.com/1080x1080',
-//   user1: {
-//     avatar: 'http://via.placeholder.com/30x30',
-//     userName: 'Bobbilicious1'
-//   },
-//   likes: 4,
-//   commentCount: 7 
-// };
-
 class Toolbar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      likes: this.props.likes,
+    };
+  }
+
+  handleClick = (event) => {
+    const { imageId } = this.props;
+    const token = window.localStorage.getItem("token");
+
+    fetch('http://localhost:8080/api/v1/images/'+imageId+'/like', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'x-access-token': token,
+      }
+    })
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          likes: json.data.likes,
+        })
+      })
+    }
+
   render () {
     return (
       <div className="Toolbar">
         <div className="Toolbar__Wrapper">
-          <button className="Toolbar__LikeBtn"><i className="far fa-heart"></i></button>
+          <button className="Toolbar__LikeBtn" onClick={this.handleClick}><i className="far fa-heart"></i></button>
         </div>
-        {this.props.likes > 0 && 
-          <p className="Toolbar__Likes">{this.props.likes} gilla-markeringar</p>
+        {this.state.likes.length > 0 && 
+          <p className="Toolbar__Likes">{this.state.likes.length} gilla-markeringar</p>
         }
       </div>
     );

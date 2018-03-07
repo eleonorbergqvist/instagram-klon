@@ -8,7 +8,7 @@ const userSchema = new Schema({
     userName: String,
     avatar: String,
     email: String,
-    password: String
+    password: String,
 });
 
 const imageSchema = new Schema({
@@ -16,7 +16,10 @@ const imageSchema = new Schema({
     userName: String,
     description: String,
     // TODO: Add created field
-    source: String
+    source: String,
+    likes: [
+      {type: Schema.Types.ObjectId, ref: 'User'}
+    ]
 });
 
 const commentSchema = new Schema({

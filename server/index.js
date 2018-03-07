@@ -94,12 +94,32 @@ app.get('/api/v1/images/:id', verifyToken, (req, res) => {
   Image.
     findOne({ _id: req.params.id }).
     populate(['user', 'comment']).
-    exec((err, images) => {
+    exec((err, image) => {
       if (err) return handleError(err, res);
 
-      return res.json({ data: images });
+      return res.json({ data: image });
     });
 });
+
+app.post('/api/v1/images/:id/like', verifyToken, (req, res) => {
+  Image.
+    findOne({ _id: req.params.id }).
+    populate(['user', 'comment']).
+    exec((err, image) => {
+      if (err) return handleError(err, res);
+
+      let likes = image.likes || [];
+      if (likes.indexOf(req.userId) === -1) {
+        likes.push(req.userId);
+      }
+      image.likes = likes;
+
+      image.save((err, data) => {
+        return res.json({ data: image });
+      });
+    });
+});
+
 
 app.get('/api/v1/comments', verifyToken, (req, res) => {
   Comment.
@@ -109,6 +129,22 @@ app.get('/api/v1/comments', verifyToken, (req, res) => {
       if (err) return handleError(err, res);
       return res.json({ data: comments });
     });
+});
+
+app.post('/api/v1/comments', verifyToken, (req, res) => {
+  if (!req.body.text) return res.status(400).send("Missing text.");
+  if (!req.body.image) return res.status(400).send("Missing image.");
+
+  Comment.create({
+    user: req.userId,
+    userName: req.userName,
+    image: req.body.image,
+    text: req.body.text,
+  }, (err, comment) => {
+    if (err) return res.status(500).send("There was a problem registering the comment.")
+
+    return res.status(201).send({ comment: comment });
+  });
 });
 
 app.post('/api/v1/register', (req, res) => {
@@ -146,7 +182,7 @@ app.post('/api/v1/login', (req, res) => {
       const isValid = bcrypt.compareSync(req.body.password, user.password);
       if (!isValid) return res.status(401).send({ message: "Invalid username and/or password."});
 
-      var token = jwt.sign({ id: user._id }, config.SECRET, {
+      var token = jwt.sign({ id: user._id, userName: user.userName }, config.SECRET, {
         expiresIn: 86400,  // 24 hours
       });
       return res.status(200).send({ 
@@ -158,5 +194,7 @@ app.post('/api/v1/login', (req, res) => {
       });
     });
 });
+
+
 
 app.listen(8080, () => console.log('Example app listening on port 8080!'))

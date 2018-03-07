@@ -18,19 +18,15 @@ class Comments extends Component {
 
   componentWillMount() {
     const {imgId} = this.props.match.params;
+    const currentUser = window.localStorage.getItem("currentUser");
     const token = window.localStorage.getItem("token");
 
-    fetch('http://localhost:8080/api/v1/comments?image='+imgId, {
-        method: 'GET',
-        headers: {
-          'x-access-token': token
-        }})
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          comments: json.data,
-        });
-      })
+    this.setState({
+      currentUser: currentUser,
+      token: token,
+    });
+
+    this.getComments();
 
     fetch('http://localhost:8080/api/v1/images/'+imgId, {
         method: 'GET',
@@ -43,16 +39,30 @@ class Comments extends Component {
           image: json.data,
         });
       })
+  }
 
-    const currentUser = window.localStorage.getItem("currentUser");
-    this.setState({
-      currentUser,
-    });
+  getComments() {
+    const {imgId} = this.props.match.params;
+    const token = window.localStorage.getItem("token");
+    fetch('http://localhost:8080/api/v1/comments?image='+imgId, {
+        method: 'GET',
+        headers: {
+          'x-access-token': token,
+        }})
+      .then(response => response.json())
+      .then(json => {
+        this.setState({
+          comments: json.data,
+        });
+      })
+  }
+
+  handleCommentSuccess = (comment) => {
+    this.getComments();
   }
 
   render() {
-    const { userName } = this.props.match.params;
-    const { image, comments, currentUser } = this.state;
+    const { image, comments, currentUser, token } = this.state;
 
     return (
       <div className="Comments">
@@ -65,7 +75,7 @@ class Comments extends Component {
         {comments.map((comment) => <Comment key={comment._id} {...comment} />)}
         <hr className="Comments__Separator" />
         {image && currentUser && 
-          <CommentInput image={image._id} user={currentUser} />
+          <CommentInput image={image._id} user={currentUser} onSuccess={this.handleCommentSuccess} token={token} />
         }
       </div>
     );

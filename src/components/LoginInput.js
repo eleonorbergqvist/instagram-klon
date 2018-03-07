@@ -44,7 +44,7 @@ class LoginInput extends Component {
     })
       .then(response => response.json())
       .then(json => {
-        this.props.onSuccess(json.token);
+        this.props.onSuccess(json);
       })
   }
 
