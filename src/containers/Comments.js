@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import data from "./Comments.json";
 import './Comments.css';
 import Comment from "../components/Comment";
 import Header from '../components/Header';
@@ -12,18 +11,23 @@ class Comments extends Component {
     this.state = {
       image: null,
       comments: [],
-      currentUser: null,
+      currentUserName: null,
+      currentUserAvatar: null,
     }
   }
 
   componentWillMount() {
-    const {imgId} = this.props.match.params;
-    const currentUser = window.localStorage.getItem("currentUser");
+    const { imgId } = this.props.match.params;
+    const currentUserName = window.localStorage.getItem("currentUserName");
+    const currentUserAvatar = window.localStorage.getItem("currentUserAvatar");
     const token = window.localStorage.getItem("token");
 
     this.setState({
-      currentUser: currentUser,
       token: token,
+      user: {
+        userName: currentUserName,
+        avatar: currentUserAvatar,
+      },
     });
 
     this.getComments();
@@ -39,6 +43,8 @@ class Comments extends Component {
           image: json.data,
         });
       })
+
+      
   }
 
   getComments() {
@@ -62,7 +68,7 @@ class Comments extends Component {
   }
 
   render() {
-    const { image, comments, currentUser, token } = this.state;
+    const { image, comments, user, token } = this.state;
 
     return (
       <div className="Comments">
@@ -74,8 +80,9 @@ class Comments extends Component {
         <hr className="Comments__Separator" />
         {comments.map((comment) => <Comment key={comment._id} {...comment} />)}
         <hr className="Comments__Separator" />
-        {image && currentUser && 
-          <CommentInput image={image._id} user={currentUser} onSuccess={this.handleCommentSuccess} token={token} />
+
+        {image && user &&
+          <CommentInput image={image._id} user={user} onSuccess={this.handleCommentSuccess} token={token} />
         }
       </div>
     );

@@ -23,6 +23,7 @@ class FeedImages extends Component {
       })
       .then(response => response.json())
       .then(json => {
+        console.log(json.data);
         this.setState({
           images: json.data
         });

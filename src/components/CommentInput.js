@@ -57,7 +57,7 @@ class CommentInput extends Component {
 
     return (
       <div className="CommentInput">
-        <img className="CommentInput__Avatar" alt={user.avatar} src={user.avatar} />
+        <img className="CommentInput__Avatar" alt={user.avatar} src={ "http://localhost:8080/public/" + user.avatar } />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="CommentInput__Field"></label>
           <input className="CommentInput__Field" id="CommentInput__Field" 
