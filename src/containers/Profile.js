@@ -13,6 +13,11 @@ class Profile extends Component {
   }
  
   componentWillMount() {
+    const currentUserId = window.localStorage.getItem("currentUserId");
+    this.setState({
+      currentUserId: currentUserId,
+    });
+
     const { userName } = this.props.match.params;
     const token = window.localStorage.getItem("token");
     
@@ -31,7 +36,6 @@ class Profile extends Component {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json);
         this.setState({
           images: json.data
         });
@@ -43,13 +47,13 @@ class Profile extends Component {
 
   render() {
     const { userName } = this.props.match.params;
-    const { images } = this.state;
+    const { images, currentUserId } = this.state;
 
     return (
       <div>
         <Header showBack history={this.props.history} />
         <h1>Profile: {userName}</h1>
-        {images.map((image) => <FeedImage key={image._id} {...image} />)}
+        {images.map((image) => <FeedImage key={image._id} {...image} currentUserId={currentUserId} />)}
       </div>
     );
   }

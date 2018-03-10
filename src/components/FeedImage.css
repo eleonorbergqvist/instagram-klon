@@ -32,5 +32,8 @@
 
 .Toolbar__Likes {
     padding: 10px;
+}
 
+.Toolbar__LikeBtn--Liked {
+   color: red;
 }

@@ -17,8 +17,6 @@ class LoginInput extends Component {
     this.setState({
       [name]: event.target.value
     });
-
-    console.log(this.state.email);
   }
 
   urlencodeObject = params => {

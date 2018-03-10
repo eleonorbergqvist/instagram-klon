@@ -16,8 +16,6 @@ class CommentInput extends Component {
     this.setState({
       [name]: event.target.value
     });
-
-    console.log(this.state.text);
   }
 
   urlencodeObject = params => {

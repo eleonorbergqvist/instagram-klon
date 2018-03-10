@@ -101,7 +101,7 @@ app.get('/api/v1/images/:id', verifyToken, (req, res) => {
     });
 });
 
-app.post('/api/v1/images/:id/like', verifyToken, (req, res) => {
+app.post('/api/v1/images/:id/toggle-like', verifyToken, (req, res) => {
   Image.
     findOne({ _id: req.params.id }).
     populate(['user', 'comment']).
@@ -111,6 +111,9 @@ app.post('/api/v1/images/:id/like', verifyToken, (req, res) => {
       let likes = image.likes || [];
       if (likes.indexOf(req.userId) === -1) {
         likes.push(req.userId);
+      } else {
+        var index = likes.indexOf(req.userId);
+        likes.splice(index, 1);
       }
       image.likes = likes;
 
@@ -190,6 +193,7 @@ app.post('/api/v1/login', (req, res) => {
         user: {
           userName: user.userName,
           avatar: user.avatar,
+          userId: user._id,
         }
       });
     });

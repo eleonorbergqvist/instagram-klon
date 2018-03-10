@@ -13,6 +13,7 @@ class Login extends Component {
     window.localStorage.setItem("token", params.token);
     window.localStorage.setItem("currentUserName", params.user.userName); 
     window.localStorage.setItem("currentUserAvatar", params.user.avatar);
+    window.localStorage.setItem("currentUserId", params.user.userId);
 
     this.setState({ redirectToReferrer: true });
   }
