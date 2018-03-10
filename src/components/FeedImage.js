@@ -17,9 +17,8 @@ class FeedImage extends Component {
           {description}
         </p>
         
-        {commentCount > 0 && 
-          <Link className="FeedImage__ShowComments" to={`/images/${_id}/comments`}>Visa kommentarer</Link>
-        }
+        <Link className="FeedImage__ShowComments" to={`/images/${_id}/comments`}>{ commentCount > 0 ? "Visa kommentarer" : "Kommentera" }</Link>
+        
       </article>
     );
   }
