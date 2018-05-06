@@ -8,7 +8,7 @@ const config = require('./config');
 const { User, Image, Comment } = require('./models');
 const verifyToken = require('./verifyToken');
 
-mongoose.connect('mongodb://localhost/instagram_klon');
+mongoose.connect(config.MONGODB_URI);
 
 // Activate cors
 app.use(function (req, res, next) {
