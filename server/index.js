@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose');
@@ -27,13 +28,12 @@ app.use(bodyParser.urlencoded({
 
 // Serve static images
 app.use('/public', express.static('public'));
+app.use('/', express.static('build'));
 
 const handleError = (err, res) => {
   console.log(err);
   return res.send('ERROR! Someting has happened!')
 }
-
-app.get('/', (req, res) => res.send('Hello World!'))
 
 // Factory helpers
 app.get('/actions/create/user', (req, res) => {
@@ -198,5 +198,9 @@ app.post('/api/v1/login', (req, res) => {
       });
     });
 });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/build/index.html'));
+})
 
 app.listen(config.PORT, () => console.log('App listening on port '+config.PORT+'!'))
