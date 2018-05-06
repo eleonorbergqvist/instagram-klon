@@ -199,6 +199,6 @@ app.post('/api/v1/login', (req, res) => {
     });
 });
 
+var PORT = process.env.PORT || 8080;
 
-
-app.listen(8080, () => console.log('Example app listening on port 8080!'))
+app.listen(PORT, () => console.log('App listening on port '+PORT+'!'))
