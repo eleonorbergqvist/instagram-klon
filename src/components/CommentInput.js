@@ -36,7 +36,7 @@ class CommentInput extends Component {
       image: this.props.image,
     });
     
-    fetch('http://localhost:8080/api/v1/comments', {
+    fetch('/api/v1/comments', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -55,7 +55,7 @@ class CommentInput extends Component {
 
     return (
       <div className="CommentInput">
-        <img className="CommentInput__Avatar" alt={user.avatar} src={ "http://localhost:8080/public/" + user.avatar } />
+        <img className="CommentInput__Avatar" alt={user.avatar} src={ "/public/" + user.avatar } />
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="CommentInput__Field"></label>
           <input className="CommentInput__Field" id="CommentInput__Field" 

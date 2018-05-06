@@ -21,7 +21,7 @@ class Profile extends Component {
     const { userName } = this.props.match.params;
     const token = window.localStorage.getItem("token");
     
-    fetch('http://localhost:8080/api/v1/images?userName='+userName, {
+    fetch('/api/v1/images?userName='+userName, {
         method: 'GET',
         headers: {
           'x-access-token': token

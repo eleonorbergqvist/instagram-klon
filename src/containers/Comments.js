@@ -32,7 +32,7 @@ class Comments extends Component {
 
     this.getComments();
 
-    fetch('http://localhost:8080/api/v1/images/'+imgId, {
+    fetch('/api/v1/images/'+imgId, {
         method: 'GET',
         headers: {
           'x-access-token': token
@@ -50,7 +50,7 @@ class Comments extends Component {
   getComments() {
     const {imgId} = this.props.match.params;
     const token = window.localStorage.getItem("token");
-    fetch('http://localhost:8080/api/v1/comments?image='+imgId, {
+    fetch('/api/v1/comments?image='+imgId, {
         method: 'GET',
         headers: {
           'x-access-token': token,

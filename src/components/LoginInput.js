@@ -33,7 +33,7 @@ class LoginInput extends Component {
       password: this.state.password,
     })
     
-    fetch('http://localhost:8080/api/v1/login', {
+    fetch('/api/v1/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

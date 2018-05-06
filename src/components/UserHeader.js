@@ -8,7 +8,7 @@ class UserHeader extends Component {
     return (
       <header className="UserHeader">
         <div className="UserHeader__Avatar">
-          <img className="UserHeader__AvatarImage" src={"http://localhost:8080/public/" + this.props.avatar} alt={this.props.userName} />
+          <img className="UserHeader__AvatarImage" src={"/public/" + this.props.avatar} alt={this.props.userName} />
         </div>
         <Link className="UserHeader__Name" to={'/users/'+this.props.userName}>{this.props.userName}</Link>
       </header>

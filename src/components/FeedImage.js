@@ -10,7 +10,7 @@ class FeedImage extends Component {
     return (
       <article className="FeedImage">
         <UserHeader {...user} />
-        <img className="FeedImage__Image" src={ "http://localhost:8080/public/" + source } alt="text"/>
+        <img className="FeedImage__Image" src={ "/public/" + source } alt="text"/>
         <Toolbar likes={likes} imageId={_id} currentUserId={currentUserId} />
         <p className="FeedImage__Description">
           <strong className="FeedImage__DescriptionUserName">{user.userName}</strong>
@@ -37,7 +37,7 @@ class Toolbar extends Component {
     const { imageId } = this.props;
     const token = window.localStorage.getItem("token");
 
-    fetch('http://localhost:8080/api/v1/images/'+imageId+'/toggle-like', {
+    fetch('/api/v1/images/'+imageId+'/toggle-like', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',

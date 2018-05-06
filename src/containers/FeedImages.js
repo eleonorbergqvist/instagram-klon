@@ -21,7 +21,7 @@ class FeedImages extends Component {
     });
 
     const token = window.localStorage.getItem("token");
-    fetch('http://localhost:8080/api/v1/images', {
+    fetch('/api/v1/images', {
         method: 'GET',
         headers: {
           'x-access-token': token
