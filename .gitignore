@@ -23,5 +23,3 @@ yarn-error.log*
 # media
 server/public
 !server/public/.gitkeep
-
-server/config.js
