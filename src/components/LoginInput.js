@@ -57,7 +57,7 @@ class LoginInput extends Component {
             onChange={this.handleChange} placeholder="Email"
           />
           <input className="LoginInput__Field" id="LoginInput__FieldPassword" 
-            type="text" name="password" value={this.state.password}
+            type="password" name="password" value={this.state.password}
             onChange={this.handleChange} placeholder="Lösenord" 
           />
           <input className="LoginInput__Submit" type="submit" value="Submit" 
